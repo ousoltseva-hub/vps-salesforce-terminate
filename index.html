@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce - Account: Jacob Shay (VPS Management)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #B0C4DE;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #181818;
+            min-height: 100vh;
+        }
+
+        /* Top Teal Header */
+        .app-header {
+            background-color: #0096C7;
+            color: #ffffff;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .app-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-logo-title {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .console-badge {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Nav Tabs */
+        .app-nav-tabs {
+            background: #ffffff;
+            padding: 0 16px;
+            border-bottom: 1px solid #dddbda;
+            display: flex;
+            gap: 16px;
+        }
+
+        .app-nav-item {
+            padding: 10px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+        }
+
+        .app-nav-item.active {
+            color: #0176D3;
+            border-bottom-color: #0176D3;
+        }
+
+        /* Main Console Layout */
+        .console-container {
+            padding: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Record Header Banner */
+        .record-header {
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #dddbda;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .account-title-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .account-icon {
+            background-color: #00A1E0;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .header-fields {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            border-top: 1px solid #f3f3f3;
+            padding-top: 12px;
+        }
+
+        .field-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #514f4d;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .field-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: #080707;
+            margin-top: 2px;
+        }
+
+        .branch-badge {
+            background-color: #f7bbd3;
+            color: #b00020;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        /* Account Primary Tabs */
+        .account-tabs {
+            background-color: #ffffff;
+            border-radius: 4px 4px 0 0;
+            border: 1px solid #dddbda;
+            border-bottom: none;
+            display: flex;
+            padding: 0 12px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            padding: 10px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #514f4d;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn:hover {
+            color: #0176D3;
+        }
+
+        .tab-btn.active {
+            color: #0176D3;
+            border-bottom-color: #0176D3;
+            background-color: #ffffff;
+        }
+
+        .status-pill {
+            background: #2e844a;
+            color: white;
+            font-size: 9px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        .status-pill.terminated {
+            background: #c2392a;
+        }
+
+        /* 2-Column Main Layout Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 12px;
+            align-items: start;
+        }
+
+        /* VPS Main Content Workspace */
+        .vps-workspace {
+            background-color: #ffffff;
+            border-radius: 0 0 4px 4px;
+            border: 1px solid #dddbda;
+            padding: 16px;
+            min-height: 500px;
+        }
+
+        /* Sub Tab Bar for VPS */
+        .vps-subtabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 2px solid #dddbda;
+            margin-bottom: 16px;
+        }
+
+        .subtab-btn {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            background: #f3f3f3;
+            border: 1px solid #dddbda;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            color: #444;
+        }
+
+        .subtab-btn.active {
+            background: #ffffff;
+            color: #080707;
+            position: relative;
+            bottom: -2px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        /* Split Workspace inside VPS tab */
+        .vps-split-view {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 16px;
+        }
+
+        /* Left Details Card */
+        .vps-details-card {
+            border: 1px solid #dddbda;
+            border-radius: 4px;
+            padding: 16px;
+            background: #ffffff;
+        }
+
+        .vps-title-header {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #181818;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            row-gap: 8px;
+            font-size: 12px;
+        }
+
+        .field-grid .lbl {
+            font-weight: 700;
+            color: #3e3e3c;
+        }
+
+        .field-grid .val {
+            color: #080707;
+        }
+
+        .badge-enabled {
+            background-color: #cdefd8;
+            color: #0e7030;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+            display: inline-block;
+        }
+
+        .badge-terminated {
+            background-color: #feded8;
+            color: #c2392a;
